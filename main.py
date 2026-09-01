@@ -33,3 +33,30 @@ DB_CHARSET = os.environ.get("DB_CHARSET", "utf8mb4")
 
 API_URL = os.environ.get("API_URL")
 EXCEL_FILENAME = os.environ.get("EXCEL_FILENAME", "tainan_house.xlsx")
+
+#透過API抓取OPENDATA
+def fetch_data(api_url,params=None):
+        #檢查API_URL
+        if not api_url:
+                logging.error("錯誤:API URL為空!")
+                return None
+        try:
+            logging.info(f"從API擷取資料....")
+            # get opendata by API
+            res=rq.get(api_url,params=params, verify=False)
+            #檢查回傳狀態
+            if res.ok:#對應200為成功
+                #轉換資料型態為python
+                data=res.json()
+                logging.info(f"成功取得資料，共{len(data.get('data'),[])}") #len 計算共幾筆資料
+                return data
+            else:
+                logging.warning(f"回應資料錯誤{res.status_code}") 
+                return None
+        except rq.exceptions. SSLError as ssl_err:
+            logging.error(f"SSL 認證錯誤:{ssl_err}")
+            return None
+        except Exception as error:
+            logging.error(f"執行擷取open data時,發生錯誤:{error}")
+            return None
+                
