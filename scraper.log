@@ -1,0 +1,194 @@
+2026-09-04 10:43:24 [ERROR] 01.py(行:42: API URL 為空!)
+2026-09-04 10:51:21 [ERROR] main.py(f]:41: 錯誤:API URL為空!)
+2026-09-04 10:51:31 [ERROR] main.py(f]:41: 錯誤:API URL為空!)
+2026-09-04 10:54:50 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 10:54:50 [ERROR] main.py(f]:60: 執行擷取open data時,發生錯誤:No connection adapters were found for '=https://soa.tainan.gov.tw/Api/Service/Get/ea68f0dd-a0e9-4200-be8a-a4b76c3f87a4')
+2026-09-04 10:55:26 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 10:55:27 [ERROR] main.py(f]:60: 執行擷取open data時,發生錯誤:len() takes exactly one argument (2 given))
+2026-09-04 10:56:33 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 10:56:33 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 10:56:33 [INFO] main.py(f]:176: 準備處理38筆記錄)
+2026-09-04 10:56:33 [ERROR] main.py(f]:73: 儲存excel時發生錯誤:name 'pd' is not defined)
+Traceback (most recent call last):
+  File "d:\python_practisefile_D\DB_project\main.py", line 66, in save_to_excel
+    df=pd.DataFrame(data)
+       ^^
+NameError: name 'pd' is not defined
+2026-09-04 10:56:33 [ERROR] main.py(f]:150: MySQL #fFi#li: name 'pd' is not defined)
+Traceback (most recent call last):
+  File "d:\python_practisefile_D\DB_project\main.py", line 83, in save_to_mysql
+    df = pd.DataFrame(data)
+         ^^
+NameError: name 'pd' is not defined
+2026-09-04 10:56:47 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 10:56:47 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 10:56:47 [INFO] main.py(f]:176: 準備處理38筆記錄)
+2026-09-04 10:56:48 [INFO] main.py(f]:70: 資料寫入成功tainan_house.xlsx)
+2026-09-04 10:56:48 [INFO] main.py(f]:86: 連線至MySQL(localhost:3306)檢查資料庫狀態 ... )
+2026-09-04 10:56:50 [ERROR] main.py(f]:150: MySQL #fFi#li: Can't load plugin: sqlalchemy.dialects:mysql.pymysq1)
+Traceback (most recent call last):
+  File "d:\python_practisefile_D\DB_project\main.py", line 106, in save_to_mysql
+    engine =create_engine(db_uri)
+  File "<string>", line 2, in create_engine
+  File "D:\python_practisefile_D\DB_project\.venv\Lib\site-packages\sqlalchemy\util\deprecations.py", line 281, in warned
+    return fn(*args, **kwargs)  # type: ignore[no-any-return]
+  File "D:\python_practisefile_D\DB_project\.venv\Lib\site-packages\sqlalchemy\engine\create.py", line 568, in create_engine
+    entrypoint = u._get_entrypoint()
+  File "D:\python_practisefile_D\DB_project\.venv\Lib\site-packages\sqlalchemy\engine\url.py", line 772, in _get_entrypoint
+    cls = registry.load(name)
+  File "D:\python_practisefile_D\DB_project\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 345, in load
+    raise exc.NoSuchModuleError(
+        "Can't load plugin: %s:%s" % (self.group, name)
+    )
+sqlalchemy.exc.NoSuchModuleError: Can't load plugin: sqlalchemy.dialects:mysql.pymysq1
+2026-09-04 10:58:13 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 10:58:13 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 10:58:13 [INFO] main.py(f]:176: 準備處理38筆記錄)
+2026-09-04 10:58:13 [INFO] main.py(f]:70: 資料寫入成功tainan_house.xlsx)
+2026-09-04 10:58:13 [INFO] main.py(f]:86: 連線至MySQL(localhost:3306)檢查資料庫狀態 ... )
+2026-09-04 10:58:17 [ERROR] main.py(f]:150: MySQL #fFi#li: 'Connection' object has no attribute 'excute')
+Traceback (most recent call last):
+  File "d:\python_practisefile_D\DB_project\main.py", line 130, in save_to_mysql
+    sql_conn.excute(text("TRUNCATE TABLE house;"))
+    ^^^^^^^^^^^^^^^
+AttributeError: 'Connection' object has no attribute 'excute'. Did you mean: 'execute'?
+2026-09-04 10:58:53 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 10:58:53 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 10:58:53 [INFO] main.py(f]:176: 準備處理38筆記錄)
+2026-09-04 10:58:53 [INFO] main.py(f]:70: 資料寫入成功tainan_house.xlsx)
+2026-09-04 10:58:53 [INFO] main.py(f]:86: 連線至MySQL(localhost:3306)檢查資料庫狀態 ... )
+2026-09-04 10:58:57 [INFO] main.py(f]:131: MysQl 資料表已建立並清空舊資料)
+2026-09-04 10:58:57 [INFO] main.py(f]:134: 爭將資料寫入 SQL table...中)
+2026-09-04 10:58:57 [ERROR] main.py(f]:150: MySQL #fFi#li: 'DataFrame' object has no attribute 'tp_sql')
+Traceback (most recent call last):
+  File "d:\python_practisefile_D\DB_project\main.py", line 135, in save_to_mysql
+    df.tp_sql(
+    ^^^^^^^^^
+  File "D:\python_practisefile_D\DB_project\.venv\Lib\site-packages\pandas\core\generic.py", line 6194, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'tp_sql'. Did you mean: 'to_sql'?
+2026-09-04 10:59:30 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 10:59:31 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 10:59:31 [INFO] main.py(f]:176: 準備處理38筆記錄)
+2026-09-04 10:59:31 [INFO] main.py(f]:70: 資料寫入成功tainan_house.xlsx)
+2026-09-04 10:59:31 [INFO] main.py(f]:86: 連線至MySQL(localhost:3306)檢查資料庫狀態 ... )
+2026-09-04 10:59:35 [INFO] main.py(f]:131: MysQl 資料表已建立並清空舊資料)
+2026-09-04 10:59:35 [INFO] main.py(f]:134: 爭將資料寫入 SQL table...中)
+2026-09-04 10:59:35 [ERROR] main.py(f]:150: MySQL #fFi#li: NDFrame.to_sql() got an unexpected keyword argument 'if_exist'. Did you mean 'if_exists'?)
+Traceback (most recent call last):
+  File "d:\python_practisefile_D\DB_project\main.py", line 135, in save_to_mysql
+    df.to_sql(
+    ~~~~~~~~~^
+        name="house",
+        ^^^^^^^^^^^^^
+    ...<4 lines>...
+        method="multi"
+        ^^^^^^^^^^^^^^
+    )
+    ^
+TypeError: NDFrame.to_sql() got an unexpected keyword argument 'if_exist'. Did you mean 'if_exists'?
+2026-09-04 11:00:16 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 11:00:17 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 11:00:17 [INFO] main.py(f]:176: 準備處理38筆記錄)
+2026-09-04 11:00:17 [INFO] main.py(f]:70: 資料寫入成功tainan_house.xlsx)
+2026-09-04 11:00:17 [INFO] main.py(f]:86: 連線至MySQL(localhost:3306)檢查資料庫狀態 ... )
+2026-09-04 11:00:21 [INFO] main.py(f]:131: MysQl 資料表已建立並清空舊資料)
+2026-09-04 11:00:21 [INFO] main.py(f]:134: 爭將資料寫入 SQL table...中)
+2026-09-04 11:00:21 [ERROR] main.py(f]:150: MySQL #fFi#li: 'DataFrame' object has no attribute 'to_csv_sql')
+Traceback (most recent call last):
+  File "d:\python_practisefile_D\DB_project\main.py", line 135, in save_to_mysql
+    df.to_csv_sql(
+    ^^^^^^^^^^^^^
+  File "D:\python_practisefile_D\DB_project\.venv\Lib\site-packages\pandas\core\generic.py", line 6194, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'to_csv_sql'
+2026-09-04 11:00:44 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 11:00:45 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 11:00:45 [INFO] main.py(f]:176: 準備處理38筆記錄)
+2026-09-04 11:00:45 [INFO] main.py(f]:70: 資料寫入成功tainan_house.xlsx)
+2026-09-04 11:00:45 [INFO] main.py(f]:86: 連線至MySQL(localhost:3306)檢查資料庫狀態 ... )
+2026-09-04 11:00:49 [INFO] main.py(f]:131: MysQl 資料表已建立並清空舊資料)
+2026-09-04 11:00:49 [INFO] main.py(f]:134: 爭將資料寫入 SQL table...中)
+2026-09-04 11:00:49 [INFO] main.py(f]:143: 資料成功寫入mysql!)
+2026-09-04 11:04:00 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 11:04:00 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 11:04:00 [INFO] main.py(f]:176: 準備處理38筆記錄)
+2026-09-04 11:04:00 [INFO] main.py(f]:70: 資料寫入成功tainan_house.xlsx)
+2026-09-04 11:04:00 [INFO] main.py(f]:86: 連線至MySQL(localhost:3306)檢查資料庫狀態 ... )
+2026-09-04 11:04:04 [INFO] main.py(f]:131: MysQl 資料表已建立並清空舊資料)
+2026-09-04 11:04:04 [INFO] main.py(f]:134: 爭將資料寫入 SQL table...中)
+2026-09-04 11:04:04 [INFO] main.py(f]:143: 資料成功寫入mysql!)
+2026-09-04 11:13:52 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 11:13:52 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 11:13:52 [INFO] main.py(f]:176: 準備處理38筆記錄)
+2026-09-04 11:13:52 [INFO] main.py(f]:70: 資料寫入成功tainan_house.xlsx)
+2026-09-04 11:13:52 [INFO] main.py(f]:86: 連線至MySQL(localhost:3306)檢查資料庫狀態 ... )
+2026-09-04 11:13:56 [INFO] main.py(f]:131: MysQl 資料表已建立並清空舊資料)
+2026-09-04 11:13:56 [INFO] main.py(f]:134: 爭將資料寫入 SQL table...中)
+2026-09-04 11:13:56 [INFO] main.py(f]:143: 資料成功寫入mysql!)
+2026-09-04 11:13:56 [INFO] main.py(f]:183: 執行讀取資料)
+2026-09-04 11:13:57 [INFO] main.py(f]:162: 成功讀取excel,共(len(df))筆資料)
+2026-09-04 11:15:25 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 11:15:26 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 11:15:26 [INFO] main.py(f]:176: 準備處理38筆記錄)
+2026-09-04 11:15:26 [INFO] main.py(f]:70: 資料寫入成功tainan_house.xlsx)
+2026-09-04 11:15:26 [INFO] main.py(f]:86: 連線至MySQL(localhost:3306)檢查資料庫狀態 ... )
+2026-09-04 11:15:30 [INFO] main.py(f]:131: MysQl 資料表已建立並清空舊資料)
+2026-09-04 11:15:30 [INFO] main.py(f]:134: 爭將資料寫入 SQL table...中)
+2026-09-04 11:15:30 [INFO] main.py(f]:143: 資料成功寫入mysql!)
+2026-09-04 11:15:30 [INFO] main.py(f]:183: 執行讀取資料)
+2026-09-04 11:15:30 [INFO] main.py(f]:162: 成功讀取excel,共38筆資料)
+2026-09-04 11:17:33 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 11:17:33 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 11:18:07 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 11:18:08 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 11:24:45 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 11:24:45 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 11:24:45 [INFO] main.py(f]:188: 準備處理38筆記錄)
+2026-09-04 11:24:45 [INFO] main.py(f]:70: 資料寫入成功tainan_house.xlsx)
+2026-09-04 11:24:45 [INFO] main.py(f]:86: 連線至MySQL(localhost:3306)檢查資料庫狀態 ... )
+2026-09-04 11:24:49 [INFO] main.py(f]:131: MysQl 資料表已建立並清空舊資料)
+2026-09-04 11:24:49 [INFO] main.py(f]:134: 爭將資料寫入 SQL table...中)
+2026-09-04 11:24:49 [INFO] main.py(f]:143: 資料成功寫入mysql!)
+2026-09-04 11:24:49 [INFO] main.py(f]:195: 執行讀取資料)
+2026-09-04 11:24:49 [INFO] main.py(f]:162: 成功讀取excel,共38筆資料)
+2026-09-04 11:24:49 [ERROR] main.py(f]:176: Mysql失敗!read_excel() got an unexpected keyword argument 'con')
+2026-09-04 11:24:50 [INFO] main.py(f]:211: 程式執行結束)
+2026-09-04 11:27:05 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 11:27:05 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 11:27:05 [INFO] main.py(f]:188: 準備處理38筆記錄)
+2026-09-04 11:27:05 [INFO] main.py(f]:70: 資料寫入成功tainan_house.xlsx)
+2026-09-04 11:27:05 [INFO] main.py(f]:86: 連線至MySQL(localhost:3306)檢查資料庫狀態 ... )
+2026-09-04 11:27:10 [INFO] main.py(f]:131: MysQl 資料表已建立並清空舊資料)
+2026-09-04 11:27:10 [INFO] main.py(f]:134: 爭將資料寫入 SQL table...中)
+2026-09-04 11:27:10 [INFO] main.py(f]:143: 資料成功寫入mysql!)
+2026-09-04 11:27:10 [INFO] main.py(f]:195: 執行讀取資料)
+2026-09-04 11:27:10 [INFO] main.py(f]:162: 成功讀取excel,共38筆資料)
+2026-09-04 11:27:10 [ERROR] main.py(f]:176: Mysql失敗!module 'pandas' has no attribute 'read_mysql')
+2026-09-04 11:27:10 [INFO] main.py(f]:211: 程式執行結束)
+2026-09-04 11:28:19 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 11:28:19 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 11:28:19 [INFO] main.py(f]:188: 準備處理38筆記錄)
+2026-09-04 11:28:19 [INFO] main.py(f]:70: 資料寫入成功tainan_house.xlsx)
+2026-09-04 11:28:19 [INFO] main.py(f]:86: 連線至MySQL(localhost:3306)檢查資料庫狀態 ... )
+2026-09-04 11:28:23 [INFO] main.py(f]:131: MysQl 資料表已建立並清空舊資料)
+2026-09-04 11:28:23 [INFO] main.py(f]:134: 爭將資料寫入 SQL table...中)
+2026-09-04 11:28:23 [INFO] main.py(f]:143: 資料成功寫入mysql!)
+2026-09-04 11:28:23 [INFO] main.py(f]:195: 執行讀取資料)
+2026-09-04 11:28:23 [INFO] main.py(f]:162: 成功讀取excel,共38筆資料)
+2026-09-04 11:28:25 [INFO] main.py(f]:173: 成功讀取Mysql,共38筆資料)
+2026-09-04 11:28:25 [INFO] main.py(f]:211: 程式執行結束)
+2026-09-04 11:29:28 [INFO] main.py(f]:44: 從API擷取資料....)
+2026-09-04 11:29:28 [INFO] main.py(f]:51: 成功取得資料，共38)
+2026-09-04 11:29:28 [INFO] main.py(f]:188: 準備處理38筆記錄)
+2026-09-04 11:29:28 [INFO] main.py(f]:70: 資料寫入成功tainan_house.xlsx)
+2026-09-04 11:29:28 [INFO] main.py(f]:86: 連線至MySQL(localhost:3306)檢查資料庫狀態 ... )
+2026-09-04 11:29:33 [INFO] main.py(f]:131: MysQl 資料表已建立並清空舊資料)
+2026-09-04 11:29:33 [INFO] main.py(f]:134: 爭將資料寫入 SQL table...中)
+2026-09-04 11:29:33 [INFO] main.py(f]:143: 資料成功寫入mysql!)
+2026-09-04 11:29:33 [INFO] main.py(f]:195: 執行讀取資料)
+2026-09-04 11:29:33 [INFO] main.py(f]:162: 成功讀取excel,共38筆資料)
+2026-09-04 11:29:35 [INFO] main.py(f]:173: 成功讀取Mysql,共38筆資料)
+2026-09-04 11:29:35 [INFO] main.py(f]:211: 程式執行結束)

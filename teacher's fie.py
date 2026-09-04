@@ -1,29 +1,30 @@
-#載入所需套件工具
-import os #處理路徑
-import logging #紀錄log
-import requests as rq #向server提出請求
-import pandas as pd #處理資料
-from sqlalchemy import create_engine, text #DB的engine
-import pymysql #連線mysql
-import openpyxl #excel驅動
-import urllib3 #處理url
-from dotenv import load_dotenv #處理environment 
+# 載入所需套件工具
+from sqlalchemy.engine import create
+import os # 處理路徑
+import logging  # 紀錄log
+import requests as rq # 向server提出請求
+import pandas as pd # 處理資料
+from sqlalchemy import create_engine, text # DB engine
+import pymysql # 連線mysql
+import openpyxl # excel驅動
+import urllib3 # 處理url
+from dotenv import load_dotenv # 抓取.env資料
 
-#1.載入 .env
+# 1. 載入.env
 load_dotenv()
 
-#2. 設定log 機制(純寫到file &輸出到終端機上)
+# 2. 設定log 機制(純寫到file & 輸出到終端機上)
 logging.basicConfig(
-    level=logging. INFO, # 設定記錄層級
-    format='%(asctime)s [%(levelname)s] %(filename)s(f]:%(lineno)d: %(message)s)',
+    level=logging.INFO, # 設定記錄層級
+    format='%(asctime)s [%(levelname)s] %(filename)s(行:%(lineno)d: %(message)s)',
     datefmt='%Y-%m-%d %H:%M:%S',
     handlers=[
         logging.FileHandler("scraper.log", encoding="utf-8"),
         logging.StreamHandler()
-        ]
+    ]
 )
 
-#設定變數
+# 設定變數
 DB_HOST = os.environ.get("DB_HOST", "localhost")
 DB_USER = os.environ.get("DB_USER", "peter")
 DB_PASSWORD = os.environ.get("DB_PASSWORD", "[PASSWORD]")
@@ -34,32 +35,35 @@ DB_CHARSET = os.environ.get("DB_CHARSET", "utf8mb4")
 API_URL = os.environ.get("API_URL")
 EXCEL_FILENAME = os.environ.get("EXCEL_FILENAME", "tainan_house.xlsx")
 
-#透過API抓取OPENDATA
-def fetch_data(api_url,params=None):
-        #檢查API_URL
-        if not api_url:
-                logging.error("錯誤:API URL為空!")
-                return None
-        try:
-            logging.info(f"從API擷取資料....")
-            # get opendata by API
-            res=rq.get(api_url,params=params, verify=False)
-            #檢查回傳狀態
-            if res.ok:#對應200為成功
-                #轉換資料型態為python
-                data=res.json()
-                logging.info(f"成功取得資料，共{len(data.get('data', []))}") #len 計算共幾筆資料
-                return data
-            else:
-                logging.warning(f"回應資料錯誤{res.status_code}") 
-                return None
-        except rq.exceptions. SSLError as ssl_err:
-            logging.error(f"SSL 認證錯誤:{ssl_err}")
+# 透過 API 抓取 opendata
+def fetch_data(api_url, params=None):
+    # 檢查api_url
+    if not api_url:
+        logging.error("API URL 為空!")
+        return None
+
+    try:
+        logging.info(f"正在從API get data...")
+        # get opendata by API
+        res = rq.get(api_url, params=params, verify=False)
+
+        # 檢查回傳狀態
+        if res.ok: # 200
+            # 轉換資料型態 json -> python
+            data = res.json()
+            logging.info(f"成功取得資料, 共 {len(data.get('data', []))} 筆")
+            return data
+        else:
+            logging.warning(f"回應資料錯誤, {res.status_code}")
             return None
-        except Exception as error:
-            logging.error(f"執行擷取open data時,發生錯誤:{error}")
-            return None
-        
+    except rq.exceptions.SSLError as ssl_err:
+        logging.error(f"SSL 認證錯誤:{ssl_err}")
+        return None
+    except Exception as error:
+        logging.error(f"執行擷取open data時, 發生錯誤:{error}")
+        return None
+
+    #以上為0903上課內容
 def save_to_excel(data,filename):
     try:
         #pandas針對不同維度的資料型態不同 :一維->series 二維:dataframe
@@ -102,7 +106,7 @@ def save_to_mysql(data): #py檔案要操作DB資料須執行步驟: 1.建立通�
         cursor=None
 
         #使用sqlalchemy進行table建立與資料寫入
-        db_uri = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset={DB_CHARSET}"
+        db_uri = f"mysql+pymysq1://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset={DB_CHARSET}"
         engine =create_engine(db_uri)
 
         # 建立資料表 table
@@ -127,15 +131,15 @@ def save_to_mysql(data): #py檔案要操作DB資料須執行步驟: 1.建立通�
                 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;"""))
 
             #清空table舊資料
-            sql_conn.execute(text("TRUNCATE TABLE house;"))
+            sql_conn.excute(text("TRUNCATE TABLE house;"))
         logging.info("MysQl 資料表已建立並清空舊資料")
 
         #寫入資料
         logging.info("爭將資料寫入 SQL table...中")
-        df.to_sql(
+        df.tp_sql(
             name="house",
             con=engine,
-            if_exists="append",
+            if_exist="append",
             index=False,
             chunksize=1000,
             method="multi"
@@ -156,56 +160,26 @@ def save_to_mysql(data): #py檔案要操作DB資料須執行步驟: 1.建立通�
 
 def read_from_excel(filename):
     try:
-        db_uri = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset={DB_CHARSET}"
+        db_uri = f"mysql+pymysq1://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset={DB_CHARSET}"
         engine=create_engine(db_uri)
         df=pd.read_excel(filename,engine="openpyxl")
-        logging.info(f"成功讀取excel,共{len(df)}筆資料")
+        logging.info(f"成功讀取excel,共(len(df))筆資料")
         return df
     except Exception as e :
         logging.error (f"讀取excel失敗!{e}")
         return None
 
-def read_from_mysql():
-    try:
-        db_uri = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset={DB_CHARSET}"
-        engine=create_engine(db_uri)
-        df=pd.read_sql_table('house',con=engine)
-        logging.info(f"成功讀取Mysql,共{len(df)}筆資料")
-        return df
-    except Exception as e :
-        logging.error (f"Mysql失敗!{e}")
-        return None
-
-
 if __name__=="__main__":
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     data = fetch_data(API_URL)
 
-    if data and isinstance(data, dict) and 'data' in data:
-        records = data['data']
+if data and isinstance(data, dict) and 'data' in data:
+    records = data['data']
 
-        if records:
-            logging.info(f"準備處理{len(records)}筆記錄")
+    if records:
+        logging.info(f"準備處理{len(records)}筆記錄")
 
-            # 儲存資料
-            save_to_excel(records, EXCEL_FILENAME)
-            save_to_mysql(records)
+        # 儲存資料
+        save_to_excel(records, EXCEL_FILENAME)
+        save_to_mysql(records)
 
-            #讀取資料
-            logging.info("執行讀取資料")
-            excel_df=read_from_excel(EXCEL_FILENAME)
-            mysql_df=read_from_mysql()
-
-            if excel_df is not None:
-                print(f"前2筆紀錄:{excel_df.head(2)}")
-
-            if mysql_df is not None:
-                print(f"前2筆紀錄:{mysql_df.head(2)}")
-
-        else:
-            logging.warning(f"API回傳成功,但data是空的")
-
-    else:
-        logging.warning(f"API回傅不成功")
-
-    logging.info("程式執行結束")
